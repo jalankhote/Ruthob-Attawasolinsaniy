@@ -36,6 +36,22 @@
             text-align: center;
         }
 
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         .logo {
             font-size: 28px;
             font-weight: bold;
@@ -224,6 +240,9 @@
 <body>
     <div class="container">
         <div class="header">
+            <div class="logo-img">
+                <img src="attawasol logo_page-0001.jpg" alt="Attawasol Insaniy Logo">
+            </div>
             <div class="logo">attawasol insany</div>
             <div class="tagline">Menyatukan Ummah, Menyebarkan Rahmah, Menyampaikan Amanah</div>
             <div class="title">PREORDER<br>RUTHOB</div>
@@ -479,4 +498,25 @@
                 return;
             }
             
-            // Format Wha
+            // Format WhatsApp message
+            let message = `*PREORDER RUTHOB - ATTAWASOL INSANY*\n\n`;
+            message += `*MAKLUMAT PEMESAN:*\n`;
+            message += `📅 Tarikh: ${tarikh}\n`;
+            message += `👤 Nama: ${nama}\n`;
+            message += `📍 Alamat: ${alamat}\n`;
+            message += `📱 HP: ${hp}\n`;
+            if (email) message += `📧 Email: ${email}\n`;
+            message += `\n*MAKLUMAT PESANAN:*\n`;
+            message += pesanan.join('\n');
+            message += `\n\n_Terima kasih atas pesanan anda!_`;
+            
+            // Encode message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/6282325661244?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
