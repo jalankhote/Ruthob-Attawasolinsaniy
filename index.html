@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preorder Ruthob - Attawasol Insany</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23325d49" width="1200" height="800"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f8f4e8;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #325d49 0%, #4a8269 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 12px;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #325d49;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #325d49;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #393939;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #325d49;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4a8269;
+            box-shadow: 0 0 0 3px rgba(50, 93, 73, 0.1);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .order-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            border: 2px solid #325d49;
+        }
+
+        .order-item {
+            display: grid;
+            grid-template-columns: 30px 1fr 120px;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .order-number {
+            font-weight: bold;
+            color: #325d49;
+            font-size: 18px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #325d49;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #325d49 0%, #4a8269 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(50, 93, 73, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(50, 93, 73, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .contact-info {
+            background: #325d49;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .contact-info strong {
+            font-size: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 36px;
+            }
+            
+            .form-content {
+                padding: 25px;
+            }
+
+            .order-item {
+                grid-template-columns: 25px 1fr;
+                gap: 10px;
+            }
+
+            .quantity-input {
+                grid-column: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">attawasol insany</div>
+            <div class="tagline">Menyatukan Ummah, Menyebarkan Rahmah, Menyampaikan Amanah</div>
+            <div class="title">PREORDER<br>RUTHOB</div>
+        </div>
+
+        <div class="form-content">
+            <form id="orderForm">
+                <div class="section-title">Maklumat Pemesan</div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label for="tarikh">TARIKH:</label>
+                        <input type="date" id="tarikh" name="tarikh" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">NAMA:</label>
+                    <input type="text" id="nama" name="nama" required placeholder="Nama lengkap Anda">
+                </div>
+
+                <div class="form-group">
+                    <label for="alamat">ALAMAT:</label>
+                    <textarea id="alamat" name="alamat" rows="3" required placeholder="Alamat lengkap pengiriman"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="hp">HP NO:</label>
+                        <input type="tel" id="hp" name="hp" required placeholder="Contoh: 88578283">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">EMAIL:</label>
+                        <input type="email" id="email" name="email" placeholder="email@contoh.com">
+                    </div>
+                </div>
+
+                <div class="order-section">
+                    <div class="section-title" style="margin-top: 0;">Maklumat Pesanan</div>
+                    <p class="note" style="margin-bottom: 20px;">Format Pesanan: Jumlah/Pakej/Jenis</p>
+                    
+                    <div class="order-item">
+                        <span class="order-number">1</span>
+                        <select id="item1" name="item1">
+                            <option value="">-- Pilih Pesanan --</option>
+                            <optgroup label="TASTER/STARTER">
+                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
+                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
+                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="FAMILY PACK">
+                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
+                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
+                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="AJWA PREMIUM">
+                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
+                            </optgroup>
+                            <optgroup label="GIFT BOX TRIO">
+                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
+                            </optgroup>
+                            <optgroup label="PEMESANAN BESAR/KHUSUS">
+                                <option value="10kg">10kg</option>
+                                <option value="15kg">15kg</option>
+                                <option value="20kg">20kg</option>
+                                <option value="25kg">25kg</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="order-item">
+                        <span class="order-number">2</span>
+                        <select id="item2" name="item2">
+                            <option value="">-- Pilih Pesanan --</option>
+                            <optgroup label="TASTER/STARTER">
+                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
+                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
+                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="FAMILY PACK">
+                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
+                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
+                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="AJWA PREMIUM">
+                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
+                            </optgroup>
+                            <optgroup label="GIFT BOX TRIO">
+                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
+                            </optgroup>
+                            <optgroup label="PEMESANAN BESAR/KHUSUS">
+                                <option value="10kg">10kg</option>
+                                <option value="15kg">15kg</option>
+                                <option value="20kg">20kg</option>
+                                <option value="25kg">25kg</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="order-item">
+                        <span class="order-number">3</span>
+                        <select id="item3" name="item3">
+                            <option value="">-- Pilih Pesanan --</option>
+                            <optgroup label="TASTER/STARTER">
+                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
+                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
+                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="FAMILY PACK">
+                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
+                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
+                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="AJWA PREMIUM">
+                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
+                            </optgroup>
+                            <optgroup label="GIFT BOX TRIO">
+                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
+                            </optgroup>
+                            <optgroup label="PEMESANAN BESAR/KHUSUS">
+                                <option value="10kg">10kg</option>
+                                <option value="15kg">15kg</option>
+                                <option value="20kg">20kg</option>
+                                <option value="25kg">25kg</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="order-item">
+                        <span class="order-number">4</span>
+                        <select id="item4" name="item4">
+                            <option value="">-- Pilih Pesanan --</option>
+                            <optgroup label="TASTER/STARTER">
+                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
+                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
+                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="FAMILY PACK">
+                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
+                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
+                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="AJWA PREMIUM">
+                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
+                            </optgroup>
+                            <optgroup label="GIFT BOX TRIO">
+                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
+                            </optgroup>
+                            <optgroup label="PEMESANAN BESAR/KHUSUS">
+                                <option value="10kg">10kg</option>
+                                <option value="15kg">15kg</option>
+                                <option value="20kg">20kg</option>
+                                <option value="25kg">25kg</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="order-item">
+                        <span class="order-number">5</span>
+                        <select id="item5" name="item5">
+                            <option value="">-- Pilih Pesanan --</option>
+                            <optgroup label="TASTER/STARTER">
+                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
+                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
+                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="FAMILY PACK">
+                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
+                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
+                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="AJWA PREMIUM">
+                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
+                            </optgroup>
+                            <optgroup label="GIFT BOX TRIO">
+                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
+                            </optgroup>
+                            <optgroup label="PEMESANAN BESAR/KHUSUS">
+                                <option value="10kg">10kg</option>
+                                <option value="15kg">15kg</option>
+                                <option value="20kg">20kg</option>
+                                <option value="25kg">25kg</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="order-item">
+                        <span class="order-number">6</span>
+                        <select id="item6" name="item6">
+                            <option value="">-- Pilih Pesanan --</option>
+                            <optgroup label="TASTER/STARTER">
+                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
+                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
+                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="FAMILY PACK">
+                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
+                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
+                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
+                            </optgroup>
+                            <optgroup label="AJWA PREMIUM">
+                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
+                            </optgroup>
+                            <optgroup label="GIFT BOX TRIO">
+                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
+                            </optgroup>
+                            <optgroup label="PEMESANAN BESAR/KHUSUS">
+                                <option value="10kg">10kg</option>
+                                <option value="15kg">15kg</option>
+                                <option value="20kg">20kg</option>
+                                <option value="25kg">25kg</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">📱 HANTAR KE WHATSAPP</button>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <p><strong>ATTAWASOL INSANY</strong></p>
+            <p>FB & IG: attawasol insany singapore</p>
+            <p>Location: Madrasah Khairiah SG</p>
+            <p>📞 WhatsApp: 8874 8848 / 9272 9132</p>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('tarikh').valueAsDate = new Date();
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama').value;
+            const alamat = document.getElementById('alamat').value;
+            const hp = document.getElementById('hp').value;
+            const email = document.getElementById('email').value;
+            const tarikh = document.getElementById('tarikh').value;
+            
+            // Collect all selected items
+            let pesanan = [];
+            for (let i = 1; i <= 6; i++) {
+                const item = document.getElementById('item' + i).value;
+                if (item) {
+                    pesanan.push(`${i}. ${item}`);
+                }
+            }
+            
+            if (pesanan.length === 0) {
+                alert('Sila pilih sekurang-kurangnya satu pesanan!');
+                return;
+            }
+            
+            // Format Wha
