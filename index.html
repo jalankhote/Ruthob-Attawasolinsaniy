@@ -3,520 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preorder Ruthob - Attawasol Insany</title>
+    <title>Pre-Order Ruthob Premium</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* --- DESIGN SYSTEM --- */
+        :root {
+            --primary: #1e5631; /* Hijau Kurma */
+            --secondary: #d4a017; /* Emas Premium */
+            --bg-color: #f4f7f6;
+            --white: #ffffff;
+            --text: #333333;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('LADANG RUTHOB.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            background-image: linear-gradient(rgba(30, 86, 49, 0.05), rgba(30, 86, 49, 0.05));
+            color: var(--text);
             padding: 20px;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: #f8f4e8;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
+            border-top: 5px solid var(--secondary);
         }
 
+        /* HEADER */
         .header {
-            background: linear-gradient(135deg, #325d49 0%, #4a8269 100%);
-            color: white;
-            padding: 30px;
             text-align: center;
-        }
-
-        .logo-img {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 15px;
-            background: white;
-            border-radius: 50%;
-            padding: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .logo-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .tagline {
-            font-size: 12px;
-            opacity: 0.95;
-            margin-bottom: 20px;
+            padding: 40px 20px 20px;
+            background: linear-gradient(to bottom, #ffffff, #f9f9f9);
         }
 
         .title {
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            margin: 10px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: var(--primary);
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-transform: uppercase;
         }
 
-        .form-content {
-            padding: 40px;
-        }
-
-        .section-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #325d49;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #325d49;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
+        .cold-chain-badge {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: 600;
-            color: #393939;
-            margin-bottom: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #90caf9;
+        }
+
+        /* DALIL SECTION */
+        .hadith-box {
+            background: #fff8e1;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            margin: 0 20px 30px;
+            font-style: italic;
+            text-align: center;
             font-size: 14px;
+            color: #5d4037;
         }
 
-        input[type="text"],
-        input[type="tel"],
-        input[type="email"],
-        input[type="date"],
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #325d49;
-            border-radius: 8px;
-            font-size: 15px;
-            background: white;
-            transition: all 0.3s;
+        /* PRODUCT GRID INFO */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 0 20px 30px;
+            text-align: center;
+        }
+        .product-item span {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--primary);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
         }
 
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #4a8269;
-            box-shadow: 0 0 0 3px rgba(50, 93, 73, 0.1);
+        /* FORM AREA */
+        .form-content { padding: 0 30px 40px; }
+
+        .section-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
         }
 
-        .row {
+        .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .order-section {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 30px;
-            border: 2px solid #325d49;
-        }
-
-        .order-item {
-            display: grid;
-            grid-template-columns: 30px 1fr 120px;
             gap: 15px;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #ccc;
         }
 
-        .order-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .form-group { margin-bottom: 15px; }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            font-weight: 600;
         }
 
-        .order-number {
-            font-weight: bold;
-            color: #325d49;
-            font-size: 18px;
-        }
-
-        select {
+        input, textarea, select {
             width: 100%;
-            padding: 10px;
-            border: 2px solid #325d49;
-            border-radius: 6px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
             font-size: 14px;
-            background: white;
+            transition: 0.3s;
+        }
+        
+        input:focus { border-color: var(--primary); outline: none; }
+
+        /* DELIVERY SWITCH */
+        .delivery-toggle {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .radio-box {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .radio-box:hover { background: #f9f9f9; }
+        .radio-box input { width: auto; }
+
+        /* STORE INFO */
+        .store-info {
+            display: none; /* Hidden by default */
+            background: #f1f8e9;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border: 1px dashed var(--primary);
         }
 
-        .note {
-            font-size: 12px;
-            color: #666;
-            font-style: italic;
-            margin-top: 5px;
+        /* PACKAGES */
+        .package-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
+        .pkg-name { font-weight: 700; color: var(--primary); font-size: 16px; }
+        .pkg-price-tag { color: #c0392b; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+        
+        .qty-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            background: #fafafa;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .qty-row input { width: 70px; text-align: center; font-weight: bold; }
+
+        /* PAYMENT */
+        .payment-box {
+            background: #eef2f3;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+        .pay-row { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .code { font-family: monospace; font-weight: bold; background: #fff; padding: 2px 6px; border-radius: 4px; }
+
+        /* SUMMARY & BUTTON */
+        .summary-box {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .sum-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
+        .total-row { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.3); font-size: 20px; font-weight: 700; }
 
         .submit-btn {
             width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #325d49 0%, #4a8269 100%);
+            background: #25D366;
             color: white;
             border: none;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 10px;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 700;
+            margin-top: 20px;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 30px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(50, 93, 73, 0.3);
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            display: flex; justify-content: center; align-items: center; gap: 10px;
         }
+        .submit-btn:hover { background: #20bd5a; }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(50, 93, 73, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .contact-info {
-            background: #325d49;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .contact-info p {
-            margin: 8px 0;
-            font-size: 14px;
-        }
-
-        .contact-info strong {
-            font-size: 16px;
-        }
-
-        @media (max-width: 600px) {
-            .row {
-                grid-template-columns: 1fr;
-            }
-            
-            .title {
-                font-size: 36px;
-            }
-            
-            .form-content {
-                padding: 25px;
-            }
-
-            .order-item {
-                grid-template-columns: 25px 1fr;
-                gap: 10px;
-            }
-
-            .quantity-input {
-                grid-column: 2;
-            }
+        @media(max-width: 600px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <div class="header">
-            <div class="logo-img">
-                <img src="attawasol logo_page-0001.jpg" alt="Attawasol Insaniy Logo">
+            <h1 class="title">PRE-ORDER RUTHOB</h1>
+            <div class="cold-chain-badge">❄️ Ruthob Segar via Cold Chain Premium</div>
+            
+            <div class="hadith-box">
+                "Rasulullah ﷺ berbuka dengan Ruthob sebelum sholat." <br>(HR. Abu Dawud)
             </div>
-            <div class="logo">attawasol insany</div>
-            <div class="tagline">Menyatukan Ummah, Menyebarkan Rahmah, Menyampaikan Amanah</div>
-            <div class="title">PREORDER<br>RUTHOB</div>
+
+            <div class="product-grid">
+                <div class="product-item"><span>Ajwa Premium</span></div>
+                <div class="product-item"><span>Barhiy</span></div>
+                <div class="product-item"><span>Sukariy</span></div>
+                <div class="product-item"><span>Nabta Sultan</span></div>
+            </div>
         </div>
 
-        <div class="form-content">
-            <form id="orderForm">
-                <div class="section-title">Maklumat Pemesan</div>
+        <form id="orderForm" class="form-content">
+
+            <div class="section-label">1. Metode Pengiriman</div>
+            <div class="delivery-toggle">
+                <label class="radio-box">
+                    <input type="radio" name="metode" value="delivery" checked onchange="toggleMethod()">
+                    Delivery ($10)
+                </label>
+                <label class="radio-box">
+                    <input type="radio" name="metode" value="pickup" onchange="toggleMethod()">
+                    Ambil Sendiri (Free)
+                </label>
+            </div>
+
+            <div id="store-info" class="store-info">
+                <strong>📍 Lokasi Pengambilan:</strong><br>
+                277, Upper Coast St. S(466423)<br>
+                <small>🕒 Isnin - Jumat: 9am - 5pm</small>
+            </div>
+
+            <div class="form-group" id="alamat-box">
+                <label>Alamat Lengkap:</label>
+                <textarea id="alamat" rows="2" placeholder="Nama Jalan, Unit No, Kodepos"></textarea>
+            </div>
+
+            <div class="section-label">2. Data Diri</div>
+            <div class="form-group">
+                <label>Nama Lengkap:</label>
+                <input type="text" id="nama" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>No HP (WhatsApp):</label>
+                    <input type="tel" id="hp" required placeholder="Contoh: 8874xxxx">
+                </div>
+                <div class="form-group">
+                    <label>No HP Cadangan:</label>
+                    <input type="tel" id="hp2" placeholder="Opsional">
+                </div>
+            </div>
+
+            <div class="section-label">3. Pilih Paket</div>
+            
+            <div class="package-card">
+                <div class="pkg-name">📦 Paket Barakah Keluarga</div>
+                <div class="pkg-price-tag">Eceran Hemat</div>
                 
-                <div class="row">
-                    <div class="form-group">
-                        <label for="tarikh">TARIKH:</label>
-                        <input type="date" id="tarikh" name="tarikh" required>
-                    </div>
+                <div class="qty-row">
+                    <label>500 Gram ($25)</label>
+                    <input type="number" id="qty500" min="0" placeholder="0" oninput="hitungTotal()">
                 </div>
-
-                <div class="form-group">
-                    <label for="nama">NAMA:</label>
-                    <input type="text" id="nama" name="nama" required placeholder="Nama lengkap Anda">
+                <div class="qty-row">
+                    <label>1 Kg ($40)</label>
+                    <input type="number" id="qty1kg" min="0" placeholder="0" oninput="hitungTotal()">
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="alamat">ALAMAT:</label>
-                    <textarea id="alamat" name="alamat" rows="3" required placeholder="Alamat lengkap pengiriman"></textarea>
+            <div class="package-card" style="border-left: 5px solid #d4a017;">
+                <div class="pkg-name">🌟 Paket Ihya' Sunnah (Bulk)</div>
+                <div class="pkg-price-tag">$120 (3kg Pertama)</div>
+                <p style="font-size:12px; margin-bottom:10px; color:#666;">Selanjutnya hanya $30/kg</p>
+                
+                <div class="qty-row">
+                    <label>Jumlah Kg (Min 3kg)</label>
+                    <input type="number" id="qtyBulk" min="0" placeholder="0" oninput="hitungTotal()">
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <label for="hp">HP NO:</label>
-                        <input type="tel" id="hp" name="hp" required placeholder="Contoh: 88578283">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">EMAIL:</label>
-                        <input type="email" id="email" name="email" placeholder="email@contoh.com">
-                    </div>
-                </div>
+            <div class="section-label">4. Pembayaran</div>
+            <div class="payment-box">
+                <div class="pay-row"><input type="radio" name="bayar" value="COD" checked> COD (Cash On Delivery)</div>
+                <div class="pay-row"><input type="radio" name="bayar" value="PayNow"> PayNow UEN: <span class="code">642149439001</span></div>
+                <div class="pay-row"><input type="radio" name="bayar" value="PayNowRef"> PayNow: <span class="code">T17LL0787E</span></div>
+            </div>
 
-                <div class="order-section">
-                    <div class="section-title" style="margin-top: 0;">Maklumat Pesanan</div>
-                    <p class="note" style="margin-bottom: 20px;">Format Pesanan: Jumlah/Pakej/Jenis</p>
-                    
-                    <div class="order-item">
-                        <span class="order-number">1</span>
-                        <select id="item1" name="item1">
-                            <option value="">-- Pilih Pesanan --</option>
-                            <optgroup label="TASTER/STARTER">
-                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
-                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
-                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="FAMILY PACK">
-                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
-                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
-                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="AJWA PREMIUM">
-                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
-                            </optgroup>
-                            <optgroup label="GIFT BOX TRIO">
-                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
-                            </optgroup>
-                            <optgroup label="PEMESANAN BESAR/KHUSUS">
-                                <option value="10kg">10kg</option>
-                                <option value="15kg">15kg</option>
-                                <option value="20kg">20kg</option>
-                                <option value="25kg">25kg</option>
-                            </optgroup>
-                        </select>
-                    </div>
+            <div class="summary-box">
+                <div class="sum-row"><span>Subtotal Produk:</span> <span id="txt-produk">$0</span></div>
+                <div class="sum-row"><span>Ongkir:</span> <span id="txt-ongkir">$0</span></div>
+                <div class="total-row"><span>TOTAL BAYAR:</span> <span id="txt-total">$0</span></div>
+            </div>
 
-                    <div class="order-item">
-                        <span class="order-number">2</span>
-                        <select id="item2" name="item2">
-                            <option value="">-- Pilih Pesanan --</option>
-                            <optgroup label="TASTER/STARTER">
-                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
-                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
-                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="FAMILY PACK">
-                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
-                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
-                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="AJWA PREMIUM">
-                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
-                            </optgroup>
-                            <optgroup label="GIFT BOX TRIO">
-                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
-                            </optgroup>
-                            <optgroup label="PEMESANAN BESAR/KHUSUS">
-                                <option value="10kg">10kg</option>
-                                <option value="15kg">15kg</option>
-                                <option value="20kg">20kg</option>
-                                <option value="25kg">25kg</option>
-                            </optgroup>
-                        </select>
-                    </div>
+            <button type="submit" class="submit-btn">
+                KIRIM PESANAN WA
+            </button>
 
-                    <div class="order-item">
-                        <span class="order-number">3</span>
-                        <select id="item3" name="item3">
-                            <option value="">-- Pilih Pesanan --</option>
-                            <optgroup label="TASTER/STARTER">
-                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
-                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
-                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="FAMILY PACK">
-                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
-                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
-                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="AJWA PREMIUM">
-                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
-                            </optgroup>
-                            <optgroup label="GIFT BOX TRIO">
-                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
-                            </optgroup>
-                            <optgroup label="PEMESANAN BESAR/KHUSUS">
-                                <option value="10kg">10kg</option>
-                                <option value="15kg">15kg</option>
-                                <option value="20kg">20kg</option>
-                                <option value="25kg">25kg</option>
-                            </optgroup>
-                        </select>
-                    </div>
-
-                    <div class="order-item">
-                        <span class="order-number">4</span>
-                        <select id="item4" name="item4">
-                            <option value="">-- Pilih Pesanan --</option>
-                            <optgroup label="TASTER/STARTER">
-                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
-                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
-                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="FAMILY PACK">
-                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
-                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
-                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="AJWA PREMIUM">
-                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
-                            </optgroup>
-                            <optgroup label="GIFT BOX TRIO">
-                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
-                            </optgroup>
-                            <optgroup label="PEMESANAN BESAR/KHUSUS">
-                                <option value="10kg">10kg</option>
-                                <option value="15kg">15kg</option>
-                                <option value="20kg">20kg</option>
-                                <option value="25kg">25kg</option>
-                            </optgroup>
-                        </select>
-                    </div>
-
-                    <div class="order-item">
-                        <span class="order-number">5</span>
-                        <select id="item5" name="item5">
-                            <option value="">-- Pilih Pesanan --</option>
-                            <optgroup label="TASTER/STARTER">
-                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
-                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
-                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="FAMILY PACK">
-                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
-                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
-                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="AJWA PREMIUM">
-                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
-                            </optgroup>
-                            <optgroup label="GIFT BOX TRIO">
-                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
-                            </optgroup>
-                            <optgroup label="PEMESANAN BESAR/KHUSUS">
-                                <option value="10kg">10kg</option>
-                                <option value="15kg">15kg</option>
-                                <option value="20kg">20kg</option>
-                                <option value="25kg">25kg</option>
-                            </optgroup>
-                        </select>
-                    </div>
-
-                    <div class="order-item">
-                        <span class="order-number">6</span>
-                        <select id="item6" name="item6">
-                            <option value="">-- Pilih Pesanan --</option>
-                            <optgroup label="TASTER/STARTER">
-                                <option value="500grm Sukariy">500grm - Ruthob Sukariy</option>
-                                <option value="500grm Barhiy">500grm - Ruthob Barhiy</option>
-                                <option value="500grm Ajwa">500grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="FAMILY PACK">
-                                <option value="750grm Sukariy">750grm - Ruthob Sukariy</option>
-                                <option value="750grm Barhiy">750grm - Ruthob Barhiy</option>
-                                <option value="750grm Ajwa">750grm - Ruthob Ajwa</option>
-                            </optgroup>
-                            <optgroup label="AJWA PREMIUM">
-                                <option value="1kg Ajwa Premium">1kg - Ruthob Ajwa Premium</option>
-                            </optgroup>
-                            <optgroup label="GIFT BOX TRIO">
-                                <option value="1.5kg Gift Box Trio">1.5kg - Gift Box Trio</option>
-                            </optgroup>
-                            <optgroup label="PEMESANAN BESAR/KHUSUS">
-                                <option value="10kg">10kg</option>
-                                <option value="15kg">15kg</option>
-                                <option value="20kg">20kg</option>
-                                <option value="25kg">25kg</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">📱 HANTAR KE WHATSAPP</button>
-            </form>
-        </div>
-
-        <div class="contact-info">
-            <p><strong>ATTAWASOL INSANY</strong></p>
-            <p>FB & IG: attawasol insany singapore</p>
-            <p>Location: Madrasah Khairiah SG</p>
-            <p>📞 WhatsApp: 8874 8848 / 9272 9132</p>
-        </div>
+        </form>
     </div>
 
     <script>
-        // Set today's date as default
-        document.getElementById('tarikh').valueAsDate = new Date();
+        // Variabel
+        const radioDelivery = document.querySelector('input[value="delivery"]');
+        const radioPickup = document.querySelector('input[value="pickup"]');
+        const alamatBox = document.getElementById('alamat-box');
+        const storeInfo = document.getElementById('store-info');
+        
+        // Input Angka
+        const in500 = document.getElementById('qty500');
+        const in1kg = document.getElementById('qty1kg');
+        const inBulk = document.getElementById('qtyBulk');
 
+        // Toggle Delivery/Pickup
+        function toggleMethod() {
+            if (radioPickup.checked) {
+                alamatBox.style.display = 'none';
+                storeInfo.style.display = 'block';
+            } else {
+                alamatBox.style.display = 'block';
+                storeInfo.style.display = 'none';
+            }
+            hitungTotal();
+        }
+
+        // Hitung Total Real-time
+        function hitungTotal() {
+            let q500 = parseInt(in500.value) || 0;
+            let q1kg = parseInt(in1kg.value) || 0;
+            let qBulk = parseInt(inBulk.value) || 0;
+
+            // Hitung Produk
+            let hargaProduk = (q500 * 25) + (q1kg * 40);
+            
+            // Logika Bulk: 3kg = 120, Seterusnya +30
+            if (qBulk > 0) {
+                let bulkPrice = 0;
+                if (qBulk < 3) {
+                     // Estimasi kasar jika user baru ketik 1 atau 2
+                     bulkPrice = qBulk * 40; 
+                } else {
+                    bulkPrice = 120 + ((qBulk - 3) * 30);
+                }
+                hargaProduk += bulkPrice;
+            }
+
+            // Hitung Ongkir (Delivery $10, Pickup $0)
+            let ongkir = 0;
+            let totalBerat = (q500*0.5) + q1kg + qBulk;
+
+            if (radioDelivery.checked) {
+                // Asumsi: Paket Ihya Sunnah (Bulk) >3kg mungkin free ongkir?
+                // Sesuai prompt "ongkir 10$", saya set flat $10 untuk delivery umum.
+                // Jika > 3kg Free Ongkir (sesuai paket Ihya Sunnah), uncomment baris bawah:
+                 if (totalBerat >= 3) ongkir = 0; else 
+                if (totalBerat > 0) ongkir = 10;
+            } else {
+                ongkir = 0; // Pickup
+            }
+
+            // Update Tampilan
+            document.getElementById('txt-produk').innerText = "$" + hargaProduk;
+            document.getElementById('txt-ongkir').innerText = (ongkir === 0) ? "Gratis" : "$" + ongkir;
+            document.getElementById('txt-total').innerText = "$" + (hargaProduk + ongkir);
+        }
+
+        // Kirim WhatsApp
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const nama = document.getElementById('nama').value;
-            const alamat = document.getElementById('alamat').value;
-            const hp = document.getElementById('hp').value;
-            const email = document.getElementById('email').value;
-            const tarikh = document.getElementById('tarikh').value;
+            let q500 = parseInt(in500.value) || 0;
+            let q1kg = parseInt(in1kg.value) || 0;
+            let qBulk = parseInt(inBulk.value) || 0;
+
+            if (q500===0 && q1kg===0 && qBulk===0) {
+                alert("Mohon isi minimal satu pesanan."); return;
+            }
+            if (qBulk > 0 && qBulk < 3) {
+                alert("Paket Ihya' Sunnah minimal 3kg."); return;
+            }
+
+            // Ambil Data
+            let nama = document.getElementById('nama').value;
+            let hp = document.getElementById('hp').value;
+            let hp2 = document.getElementById('hp2').value;
+            let metode = radioPickup.checked ? 'PICKUP (Ambil Sendiri)' : 'DELIVERY';
+            let alamat = document.getElementById('alamat').value;
+            let bayar = document.querySelector('input[name="bayar"]:checked').value;
+
+            // Kalkulasi Final untuk WA
+            let total = 0;
+            let listPesanan = [];
             
-            // Collect all selected items
-            let pesanan = [];
-            for (let i = 1; i <= 6; i++) {
-                const item = document.getElementById('item' + i).value;
-                if (item) {
-                    pesanan.push(`${i}. ${item}`);
-                }
+            if (q500 > 0) {
+                total += q500 * 25;
+                listPesanan.push(`• ${q500}x Paket 500gr`);
+            }
+            if (q1kg > 0) {
+                total += q1kg * 40;
+                listPesanan.push(`• ${q1kg}x Paket 1kg`);
+            }
+            if (qBulk >= 3) {
+                let hBulk = 120 + ((qBulk-3)*30);
+                total += hBulk;
+                listPesanan.push(`• Paket Ihya' Sunnah ${qBulk}kg`);
+            }
+
+            let totalBerat = (q500*0.5) + q1kg + qBulk;
+            let ongkir = 0;
+            if (metode === 'DELIVERY' && totalBerat < 3) ongkir = 10;
+            
+            let grandTotal = total + ongkir;
+
+            // Format Pesan
+            let msg = `*ORDER RUTHOB PREMIUM* 🌿\n`;
+            msg += `--------------------------------\n`;
+            msg += `👤 Nama: ${nama}\n`;
+            msg += `📱 HP: ${hp}\n`;
+            if (hp2) msg += `📞 HP Cadangan: ${hp2}\n`;
+            msg += `🚚 Metode: ${metode}\n`;
+            
+            if (metode === 'DELIVERY') {
+                msg += `📍 Alamat: ${alamat}\n`;
+            } else {
+                msg += `📍 Ambil di: 277 Upper Coast St.\n`;
             }
             
-            if (pesanan.length === 0) {
-                alert('Sila pilih sekurang-kurangnya satu pesanan!');
-                return;
-            }
-            
-            // Format WhatsApp message
-            let message = `*PREORDER RUTHOB - ATTAWASOL INSANY*\n\n`;
-            message += `*MAKLUMAT PEMESAN:*\n`;
-            message += `📅 Tarikh: ${tarikh}\n`;
-            message += `👤 Nama: ${nama}\n`;
-            message += `📍 Alamat: ${alamat}\n`;
-            message += `📱 HP: ${hp}\n`;
-            if (email) message += `📧 Email: ${email}\n`;
-            message += `\n*MAKLUMAT PESANAN:*\n`;
-            message += pesanan.join('\n');
-            message += `\n\n_Terima kasih atas pesanan anda!_`;
-            
-            // Encode message for WhatsApp URL
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/6282325661244?text=${encodedMessage}`;
-            
-            // Open WhatsApp
-            window.open(whatsappURL, '_blank');
+            msg += `💳 Bayar: ${bayar}\n\n`;
+            msg += `*PESANAN ANDA:*\n${listPesanan.join('\n')}\n`;
+            msg += `--------------------------------\n`;
+            msg += `💰 Subtotal: $${total}\n`;
+            msg += `📦 Ongkir: $${ongkir}\n`;
+            msg += `*💵 TOTAL: $${grandTotal}*\n`;
+            msg += `--------------------------------\n`;
+            msg += `Mohon diproses. Jazakumullah khairan.`;
+
+            // Kirim ke 082325661244 (Format 62...)
+            let targetWA = "6282325661244";
+            window.open(`https://wa.me/${targetWA}?text=${encodeURIComponent(msg)}`, '_blank');
         });
     </script>
 </body>
