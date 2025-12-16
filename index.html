@@ -4,290 +4,815 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pre-Order Ruthob Premium</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
     <style>
-        /* --- DESIGN SYSTEM --- */
         :root {
-            --primary: #1e5631; /* Hijau Kurma */
-            --secondary: #d4a017; /* Emas Premium */
-            --bg-color: #f4f7f6;
+            --primary: #1e5631;
+            --secondary: #d4a017;
+            --bg-color: #f8faf8;
             --white: #ffffff;
             --text: #333333;
+            --success: #25d366;
+            --error: #e74c3c;
+            --light-gold: #f9e79f;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+            --transition: all 0.3s ease;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
-            background-image: linear-gradient(rgba(30, 86, 49, 0.05), rgba(30, 86, 49, 0.05));
             color: var(--text);
-            padding: 20px;
+            line-height: 1.5;
+            padding: 15px;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: var(--white);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
             overflow: hidden;
             border-top: 5px solid var(--secondary);
         }
 
-        /* HEADER */
+        .hero-slider-section {
+            position: relative;
+            height: 380px;
+            border-radius: 16px 16px 0 0;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            position: relative;
+            background-position: center 30%;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        @media (min-width: 768px) {
+            .swiper-slide {
+                background-position: center 20%;
+            }
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7), rgba(30, 86, 49, 0.9));
+            color: white;
+            text-align: left;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 2;
+        }
+
+        .slide-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .slide-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            max-width: 700px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .swiper-pagination {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            left: auto;
+            width: auto;
+            z-index: 10;
+            display: flex;
+            gap: 8px;
+        }
+
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--secondary);
+            width: 28px;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+
+        /* HEADER SECTION */
         .header {
             text-align: center;
-            padding: 40px 20px 20px;
-            background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+            padding: 15px 25px 20px;
+            background: #fcfdfc;
+            border-bottom: 1px solid #eee;
         }
 
         .title {
             color: var(--primary);
             font-size: 28px;
             font-weight: 800;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
         }
 
         .cold-chain-badge {
             display: inline-block;
-            background: #e3f2fd;
-            color: #1565c0;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
+            background: rgba(30, 86, 49, 0.1);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 25px;
+            font-size: 13px;
             font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid #90caf9;
+            margin: 15px 0 10px;
+            border: 1px solid rgba(30, 86, 49, 0.2);
+            letter-spacing: 0.5px;
         }
 
-        /* DALIL SECTION */
         .hadith-box {
-            background: #fff8e1;
+            background: rgba(212, 160, 23, 0.08);
             border-left: 4px solid var(--secondary);
             padding: 15px;
-            margin: 0 20px 30px;
+            margin: 15px 0;
             font-style: italic;
             text-align: center;
             font-size: 14px;
             color: #5d4037;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
         }
 
-        /* PRODUCT GRID INFO */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            padding: 0 20px 30px;
-            text-align: center;
+        /* FORM STYLING */
+        .form-content {
+            padding: 0 25px 30px;
         }
-        .product-item span {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            background: var(--primary);
-            color: white;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        /* FORM AREA */
-        .form-content { padding: 0 30px 40px; }
 
         .section-label {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--primary);
-            margin: 25px 0 15px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
+            margin: 30px 0 18px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--light-gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 18px;
         }
 
-        .form-group { margin-bottom: 15px; }
-        
+        .form-group {
+            margin-bottom: 18px;
+        }
+
         label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 13px;
+            margin-bottom: 8px;
+            font-size: 13.5px;
             font-weight: 600;
+            color: #444;
         }
 
-        input, textarea, select {
+        input, textarea {
             width: 100%;
-            padding: 12px;
+            padding: 13px 15px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 10px;
             font-family: 'Poppins', sans-serif;
             font-size: 14px;
-            transition: 0.3s;
+            transition: var(--transition);
         }
-        
-        input:focus { border-color: var(--primary); outline: none; }
 
-        /* DELIVERY SWITCH */
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 86, 49, 0.2);
+        }
+
+        /* DELIVERY TOGGLE */
         .delivery-toggle {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 16px;
+            margin-bottom: 22px;
         }
+
         .radio-box {
             flex: 1;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
+            border: 2px solid #ddd;
+            padding: 16px;
+            border-radius: 12px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            background: #fafafa;
+        }
+
+        .radio-box:hover {
+            background: #f5f9f5;
+        }
+
+        .radio-box input {
+            width: auto;
+            accent-color: var(--secondary);
+            transform: scale(1.2);
+        }
+
+        .radio-box.selected {
+            border-color: var(--secondary);
+            background: rgba(212, 160, 23, 0.08);
+            box-shadow: 0 3px 8px rgba(212, 160, 23, 0.15);
+        }
+
+        .store-info {
+            display: none;
+            background: rgba(30, 86, 49, 0.05);
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border: 1px solid rgba(30, 86, 49, 0.15);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .store-info strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* PACKAGE CARDS */
+        .package-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .package-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .pkg-name {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .radio-box:hover { background: #f9f9f9; }
-        .radio-box input { width: auto; }
 
-        /* STORE INFO */
-        .store-info {
-            display: none; /* Hidden by default */
-            background: #f1f8e9;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: var(--primary);
-            margin-bottom: 20px;
-            border: 1px dashed var(--primary);
+        .pkg-name::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
         }
 
-        /* PACKAGES */
-        .package-card {
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        .pkg-price-tag {
+            color: #c0392b;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 12px;
+            padding: 5px 0;
         }
-        .pkg-name { font-weight: 700; color: var(--primary); font-size: 16px; }
-        .pkg-price-tag { color: #c0392b; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
-        
+
         .qty-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
-            background: #fafafa;
-            padding: 8px;
-            border-radius: 5px;
-        }
-        .qty-row input { width: 70px; text-align: center; font-weight: bold; }
-
-        /* PAYMENT */
-        .payment-box {
-            background: #eef2f3;
-            padding: 15px;
+            margin-bottom: 12px;
+            background: rgba(30, 86, 49, 0.03);
+            padding: 10px 15px;
             border-radius: 8px;
-            font-size: 13px;
+            border-left: 3px solid var(--secondary);
         }
-        .pay-row { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .code { font-family: monospace; font-weight: bold; background: #fff; padding: 2px 6px; border-radius: 4px; }
+
+        .qty-row input {
+            width: 80px;
+            text-align: center;
+            font-weight: bold;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        /* PAYMENT SECTION */
+        .payment-section {
+            background: rgba(248, 250, 248, 0.7);
+            border-radius: 12px;
+            padding: 22px;
+            margin: 28px 0;
+            border: 1px solid #eee;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .payment-option {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 18px 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 130px;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary);
+        }
+
+        .payment-option.selected {
+            border-color: var(--secondary);
+            background-color: rgba(212, 160, 23, 0.08);
+            box-shadow: 0 4px 8px rgba(212, 160, 23, 0.2);
+        }
+
+        .payment-option input {
+            display: none;
+        }
+
+        .payment-logo {
+            max-width: 80px;
+            max-height: 40px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 10px;
+            filter: brightness(0.9);
+            user-select: none;
+        }
+
+        .payment-option:hover .payment-logo {
+            filter: brightness(1);
+            transform: scale(1.05);
+        }
+
+        .payment-option.selected .payment-logo {
+            filter: brightness(1.2);
+            transform: scale(1.1);
+        }
+
+        .payment-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .payment-detail {
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .uen-code {
+            font-family: 'Poppins', monospace;
+            font-weight: bold;
+            background: rgba(30, 86, 49, 0.05);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: var(--primary);
+            display: inline-block;
+            margin-top: 4px;
+        }
 
         /* SUMMARY & BUTTON */
         .summary-box {
             background: var(--primary);
             color: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 24px;
+            border-radius: 12px;
             margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(30, 86, 49, 0.25);
         }
-        .sum-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
-        .total-row { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.3); font-size: 20px; font-weight: 700; }
+
+        .sum-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,0.35);
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+        }
 
         .submit-btn {
             width: 100%;
-            background: #25D366;
+            background: var(--success);
             color: white;
             border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 18px;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 19px;
             font-weight: 700;
-            margin-top: 20px;
+            margin-top: 28px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
-            display: flex; justify-content: center; align-items: center; gap: 10px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.45);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
-        .submit-btn:hover { background: #20bd5a; }
 
-        @media(max-width: 600px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .form-row { grid-template-columns: 1fr; }
+        .submit-btn:hover {
+            background: #1fbf5a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(30deg);
+            transition: 0.6s;
+        }
+
+        .submit-btn:hover::after {
+            left: 120%;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 15px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(30, 86, 49, 0.2);
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ERROR STYLES */
+        .error-message {
+            color: var(--error);
+            font-size: 12px;
+            margin-top: 4px;
+            padding-left: 24px;
+            position: relative;
+            display: none;
+        }
+
+        .error-message::before {
+            content: '!';
+            position: absolute;
+            left: 4px;
+            top: -1px;
+            width: 16px;
+            height: 16px;
+            background: var(--error);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hero-slider-section {
+                height: 320px;
+            }
+            
+            .slide-title {
+                font-size: 2.0rem;
+            }
+            
+            .slide-subtitle {
+                font-size: 1.0rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-slider-section {
+                height: 280px;
+            }
+            
+            .slide-content {
+                padding: 20px;
+            }
+            
+            .slide-badge {
+                font-size: 0.9rem;
+                padding: 3px 12px;
+            }
+            
+            .slide-title {
+                font-size: 1.7rem;
+                margin-bottom: 8px;
+            }
+            
+            .slide-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .swiper-pagination {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .form-row, 
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .delivery-toggle {
+                flex-direction: column;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .package-card {
+                padding: 18px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .hero-slider-section {
+                height: 240px;
+            }
+            
+            .slide-title {
+                font-size: 1.4rem;
+            }
+            
+            .slide-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .section-label {
+                font-size: 16px;
+            }
+            
+            .submit-btn {
+                font-size: 17px;
+                padding: 14px;
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <div class="header">
-            <h1 class="title">PRE-ORDER RUTHOB</h1>
-            <div class="cold-chain-badge">❄️ Ruthob Segar via Cold Chain Premium</div>
-            
-            <div class="hadith-box">
-                "Rasulullah ﷺ berbuka dengan Ruthob sebelum sholat." <br>(HR. Abu Dawud)
-            </div>
-
-            <div class="product-grid">
-                <div class="product-item"><span>Ajwa Premium</span></div>
-                <div class="product-item"><span>Barhiy</span></div>
-                <div class="product-item"><span>Sukariy</span></div>
-                <div class="product-item"><span>Nabta Sultan</span></div>
+        <!-- HERO SLIDER SECTION -->
+        <div class="hero-slider-section">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1: Promo Utama -->
+                    <div class="swiper-slide" style="background-image: url('images/LADANG\ RUTHOB.jpg')">
+                        <div class="slide-content">
+                            <h1 class="slide-title">RUTHOB FRESH From SAUDI ARABIA</h1>
+                            <p class="slide-subtitle">Ruthob Segar dibawa terus dari Saudi melalui Cold Chain Premium</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2: Ajwa Premium -->
+                    <div class="swiper-slide" style="background-image: url('images/ajwa.png')">
+                        <div class="slide-content">
+                            <h1 class="slide-title">RUTHOB AJWA</h1>
+                            <p class="slide-subtitle">Kurma muda premium yang hitam pekat, rasanya manis lembut dengan aroma special, dan teksturnya padat tapi lembut.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3: Barhiy -->
+                    <div class="swiper-slide" style="background-image: url('images/barhiy.png')">
+                        <div class="slide-content">
+                            <h1 class="slide-title">RUTHOB BARHIY</h1>
+                            <p class="slide-subtitle">Kurma muda ni kaya dengan rasa lemak manis, warna golden hingga coklat muda, dan teksturnya super lembut, cepat cair dalam mulut.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4: Sukariy -->
+                    <div class="swiper-slide" style="background-image: url('images/sukariy.png')">
+                        <div class="slide-content">
+                            <h1 class="slide-title">RUTHOB SUKARIY</h1>
+                            <p class="slide-subtitle">Kurma muda manis ringan dan refreshing, warna kuning keemasan dan teksturnya rangup-lembut (ada crunch tapi lembut).</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5: Nabta Sultan -->
+                    <div class="swiper-slide" style="background-image: url('images/majdool.png')">
+                        <div class="slide-content">
+                            <h1 class="slide-title">RUTHOB MAJDOOL</h1>
+                            <p class="slide-subtitle">Kurma muda sultan warna kuning kecoklatan dengan manis balance dan beraroma, teksturnya padat tetapi smooth.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 6: Paket Barakah -->
+                    <div class="swiper-slide" style="background-image: url('images/pakejbarakahkeluarga.png')">
+                        <div class="slide-content">
+                            <h1 class="slide-title">PAKEJ BARAKAH</h1>
+                            <p class="slide-subtitle">Pakej ideal untuk iftar keluarga dengan pilihan empat jenis ruthob berbeza. Dibungkus kemas untuk simpanan dan hidangan mudah.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 7: Paket Ihya Sunnah -->
+                    <div class="swiper-slide" style="background-image: url('images/pakejihyasunnah.png')">
+                        <div class="slide-content">
+                            <h1 class="slide-title">PAKEJ IHYA' SUNNAH</h1>
+                            <p class="slide-subtitle">Pakej fleksibel yang sesuai untuk infaq, majlis iftar, masjid-masjid. Tersedia dalam pilihan 5kg/10kg dan memuatkan empat jenis ruthob berbeza.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
         </div>
 
-        <form id="orderForm" class="form-content">
+        <!-- HEADER -->
+        <div class="header">
+            <h1 class="title">PRE-ORDER RUTHOB</h1><br>
+            <div class="cold-chain-badge">Ruthob Segar dibawa terus dari Saudi melalui Cold Chain Premium</div>
+            
+            <div class="hadith-box">
+                "Baginda ﷺ berbuka dengan Ruthob sebelum sholat." <br>(Hadith Riwayat Abu Dawud)
+            </div>
+        </div>
 
+        <!-- FORM -->
+        <form id="orderForm" class="form-content">
             <div class="section-label">1. Metode Pengiriman</div>
             <div class="delivery-toggle">
-                <label class="radio-box">
-                    <input type="radio" name="metode" value="delivery" checked onchange="toggleMethod()">
-                    Delivery ($10)
+                <label class="radio-box selected" id="label-delivery">
+                    <input type="radio" name="metode" value="delivery" checked>
+                    <div>
+                        <strong>Delivery</strong><br>
+                        <small>Ongkos $10 (Gratis untuk pesanan >3kg)</small>
+                    </div>
                 </label>
-                <label class="radio-box">
-                    <input type="radio" name="metode" value="pickup" onchange="toggleMethod()">
-                    Ambil Sendiri (Free)
+                <label class="radio-box" id="label-pickup">
+                    <input type="radio" name="metode" value="pickup">
+                    <div>
+                        <strong>Ambil Sendiri</strong><br>
+                        <small>Percuma di lokasi kami</small>
+                    </div>
                 </label>
             </div>
 
             <div id="store-info" class="store-info">
-                <strong>📍 Lokasi Pengambilan:</strong><br>
+                <strong>📍 Lokasi Pengambilan:</strong>
                 277, Upper Coast St. S(466423)<br>
-                <small>🕒 Isnin - Jumat: 9am - 5pm</small>
+                <small>🕒 Isnin - Jumaat: 9 pagi – 5 petang</small>
             </div>
 
             <div class="form-group" id="alamat-box">
-                <label>Alamat Lengkap:</label>
-                <textarea id="alamat" rows="2" placeholder="Nama Jalan, Unit No, Kodepos"></textarea>
+                <label for="alamat">Alamat Lengkap:</label>
+                <textarea id="alamat" rows="2" placeholder="Nama Jalan, Blok/Unit, Poskod"></textarea>
+                <div class="error-message" id="err-alamat">Alamat diperlukan untuk penghantaran</div>
             </div>
 
             <div class="section-label">2. Data Diri</div>
             <div class="form-group">
-                <label>Nama Lengkap:</label>
-                <input type="text" id="nama" required>
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" required placeholder="Isi nama lengkap Anda">
+                <div class="error-message" id="err-nama">Nama lengkap wajib diisi</div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>No HP (WhatsApp):</label>
-                    <input type="tel" id="hp" required placeholder="Contoh: 8874xxxx">
+                    <label for="hp">No HP (WhatsApp):</label>
+                    <input type="tel" id="hp" required placeholder="cth: 6581234567">
+                    <div class="error-message" id="err-hp">No WhatsApp wajib diisi</div>
                 </div>
                 <div class="form-group">
-                    <label>No HP Cadangan:</label>
+                    <label for="hp2">No HP Cadangan:</label>
                     <input type="tel" id="hp2" placeholder="Opsional">
                 </div>
             </div>
@@ -297,186 +822,487 @@
             <div class="package-card">
                 <div class="pkg-name">📦 Paket Barakah Keluarga</div>
                 <div class="pkg-price-tag">Eceran Hemat</div>
-                
                 <div class="qty-row">
                     <label>500 Gram ($25)</label>
-                    <input type="number" id="qty500" min="0" placeholder="0" oninput="hitungTotal()">
+                    <input type="number" id="qty500" min="0" value="0">
                 </div>
                 <div class="qty-row">
                     <label>1 Kg ($40)</label>
-                    <input type="number" id="qty1kg" min="0" placeholder="0" oninput="hitungTotal()">
+                    <input type="number" id="qty1kg" min="0" value="0">
                 </div>
             </div>
 
-            <div class="package-card" style="border-left: 5px solid #d4a017;">
-                <div class="pkg-name">🌟 Paket Ihya' Sunnah (Bulk)</div>
+            <div class="package-card">
+                <div class="pkg-name">🌟 Paket Ihya' Sunnah</div>
                 <div class="pkg-price-tag">$120 (3kg Pertama)</div>
-                <p style="font-size:12px; margin-bottom:10px; color:#666;">Selanjutnya hanya $30/kg</p>
-                
+                <p style="font-size:13px; margin:10px 0 15px; color:#555; line-height:1.4;">
+                    <strong>📝 Note:</strong> Selanjutnya hanya $30/kg. Minimum order 3kg.
+                </p>
                 <div class="qty-row">
                     <label>Jumlah Kg (Min 3kg)</label>
-                    <input type="number" id="qtyBulk" min="0" placeholder="0" oninput="hitungTotal()">
+                    <input type="number" id="qtyBulk" min="0" value="0">
                 </div>
+                <div class="error-message" id="err-bulk">Minimum order 3kg untuk paket ini</div>
             </div>
 
             <div class="section-label">4. Pembayaran</div>
-            <div class="payment-box">
-                <div class="pay-row"><input type="radio" name="bayar" value="COD" checked> COD (Cash On Delivery)</div>
-                <div class="pay-row"><input type="radio" name="bayar" value="PayNow"> PayNow UEN: <span class="code">642149439001</span></div>
-                <div class="pay-row"><input type="radio" name="bayar" value="PayNowRef"> PayNow: <span class="code">T17LL0787E</span></div>
+            <div class="payment-section">
+                <p style="margin-bottom:15px; color:#555; font-size:14px;">Pilih metode pembayaran yang Anda inginkan:</p>
+                <div class="payment-options">
+                    <label class="payment-option selected">
+                        <div class="payment-title">Bayar di Tempat</div>
+                        <div class="payment-detail">Bayar saat barang diterima (COD)</div>
+                        <input type="radio" name="bayar" value="COD" checked>
+                    </label>
+                    <label class="payment-option">
+                        <div class="payment-title">
+                            <img src="images/OCBC.png" alt="OCBC PayNow" class="payment-logo">
+                        </div>
+                        <div class="payment-detail">PayNow UEN<br><span class="uen-code">642149439001</span></div>
+                        <input type="radio" name="bayar" value="PayNow">
+                    </label>
+                    <label class="payment-option">
+                        <div class="payment-title">
+                            <img src="images/paynow.png" alt="PayNow Reference" class="payment-logo">
+                        </div>
+                        <div class="payment-detail">PayNow Reference<br><span class="uen-code">T17LL0787E</span></div>
+                        <input type="radio" name="bayar" value="PayNowRef">
+                    </label>
+                </div>
             </div>
 
             <div class="summary-box">
-                <div class="sum-row"><span>Subtotal Produk:</span> <span id="txt-produk">$0</span></div>
-                <div class="sum-row"><span>Ongkir:</span> <span id="txt-ongkir">$0</span></div>
-                <div class="total-row"><span>TOTAL BAYAR:</span> <span id="txt-total">$0</span></div>
+                <div class="sum-row"><span>Subtotal Produk:</span> <span id="txt-produk">$0.00</span></div>
+                <div class="sum-row"><span>Ongkos Kirim:</span> <span id="txt-ongkir">Percuma</span></div>
+                <div class="total-row"><span>TOTAL BAYAR:</span> <span id="txt-total">$0.00</span></div>
             </div>
 
-            <button type="submit" class="submit-btn">
-                KIRIM PESANAN WA
-            </button>
+            <div class="loading" id="loading">
+                <span class="spinner"></span> Menghantar pesanan...
+            </div>
 
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                HANTAR KE WHATSAPP
+            </button><!-- Footer Section - Paste setelah </form> -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3 class="footer-heading">INFO</h3>
+            <ul class="footer-links">
+                <li><a href="#profil">Profil Usaha</a></li>
+                <li><a href="#lowongan">Lowongan</a></li>
+                <li><a href="#cara-belanja">Cara Belanja</a></li>
+                <li><a href="#kontak">Kontak Kami</a></li>
+            </ul>
+            <ul class="footer-links" style="margin-top: 20px;">
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#sitemap">Sitemap</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3 class="footer-heading">CUSTOMER SERVICE</h3>
+            <p class="footer-text">
+                Whatsapp: <a href="https://wa.me/6282325661244" target="_blank" class="footer-link-gold">+62 823-2566-1244</a><br>
+                Telp: <a href="tel:+6282325661244" class="footer-link-gold">+62 823-2566-1244</a>
+            </p>
+            <p class="footer-text" style="margin-top: 20px;">
+                Hari: Senin – Ahad (kecuali libur nasional)<br>
+                Pukul: 08.00 – 20.00 WIB
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h3 class="footer-heading">OFFLINE STORE</h3>
+            <p class="footer-text">
+                277 Upper Coast St,<br>
+                Singapore 466423
+            </p>
+            <a href="https://www.google.com/maps/search/?api=1&query=277+Upper+Coast+St+Singapore+466423" 
+               target="_blank" 
+               class="gmaps-button">
+                📍 Google Maps
+            </a>
+            <p class="footer-text" style="margin-top: 15px;">
+                🕒 Isnin - Jumaat: 9 pagi – 5 petang
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h3 class="footer-heading">FIND US</h3>
+            <a href="https://www.instagram.com/attawasolinsaniy?igsh=NGV3eWEzaWIxOWJs" target="_blank" class="social-link instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.508-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 00-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"/>
+                </svg>
+                Instagram
+            </a>
+            <a href="https://www.facebook.com/share/1BFRGsUUsr/" target="_blank" class="social-link facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Facebook
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>RUTHOB PREMIUM | Pre-Order Ruthob Fresh dari Saudi Arabia</p>
+    </div>
+</footer>
+    </div>
+</footer>
+    </div>
+</footer>
+
+<!-- CSS untuk Footer - Taruh di dalam tag <style> yang sudah ada -->
+<style>
+/* Footer Styles */
+.footer {
+    background: linear-gradient(135deg, var(--primary), #2a7045);
+    color: white;
+    margin-top: 40px;
+    padding: 35px 25px 20px;
+    border-radius: 0 0 16px 16px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto 25px;
+}
+
+.footer-section {
+    text-align: center;
+}
+
+.footer-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--secondary);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.address-link {
+    display: block;
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.address-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-color: var(--secondary);
+}
+
+.address-text {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.click-hint {
+    font-size: 11px;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.whatsapp-link {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: var(--success);
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-link:hover {
+    background: #1fbf5a;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+</style>
         </form>
     </div>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>
-        // Variabel
-        const radioDelivery = document.querySelector('input[value="delivery"]');
-        const radioPickup = document.querySelector('input[value="pickup"]');
-        const alamatBox = document.getElementById('alamat-box');
-        const storeInfo = document.getElementById('store-info');
-        
-        // Input Angka
-        const in500 = document.getElementById('qty500');
-        const in1kg = document.getElementById('qty1kg');
-        const inBulk = document.getElementById('qtyBulk');
-
-        // Toggle Delivery/Pickup
-        function toggleMethod() {
-            if (radioPickup.checked) {
-                alamatBox.style.display = 'none';
-                storeInfo.style.display = 'block';
-            } else {
-                alamatBox.style.display = 'block';
-                storeInfo.style.display = 'none';
-            }
-            hitungTotal();
-        }
-
-        // Hitung Total Real-time
-        function hitungTotal() {
-            let q500 = parseInt(in500.value) || 0;
-            let q1kg = parseInt(in1kg.value) || 0;
-            let qBulk = parseInt(inBulk.value) || 0;
-
-            // Hitung Produk
-            let hargaProduk = (q500 * 25) + (q1kg * 40);
-            
-            // Logika Bulk: 3kg = 120, Seterusnya +30
-            if (qBulk > 0) {
-                let bulkPrice = 0;
-                if (qBulk < 3) {
-                     // Estimasi kasar jika user baru ketik 1 atau 2
-                     bulkPrice = qBulk * 40; 
-                } else {
-                    bulkPrice = 120 + ((qBulk - 3) * 30);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Swiper
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
                 }
-                hargaProduk += bulkPrice;
-            }
+            });
 
-            // Hitung Ongkir (Delivery $10, Pickup $0)
-            let ongkir = 0;
-            let totalBerat = (q500*0.5) + q1kg + qBulk;
-
-            if (radioDelivery.checked) {
-                // Asumsi: Paket Ihya Sunnah (Bulk) >3kg mungkin free ongkir?
-                // Sesuai prompt "ongkir 10$", saya set flat $10 untuk delivery umum.
-                // Jika > 3kg Free Ongkir (sesuai paket Ihya Sunnah), uncomment baris bawah:
-                 if (totalBerat >= 3) ongkir = 0; else 
-                if (totalBerat > 0) ongkir = 10;
-            } else {
-                ongkir = 0; // Pickup
-            }
-
-            // Update Tampilan
-            document.getElementById('txt-produk').innerText = "$" + hargaProduk;
-            document.getElementById('txt-ongkir').innerText = (ongkir === 0) ? "Gratis" : "$" + ongkir;
-            document.getElementById('txt-total').innerText = "$" + (hargaProduk + ongkir);
-        }
-
-        // Kirim WhatsApp
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // DOM Elements
+            const radioDelivery = document.querySelector('input[value="delivery"]');
+            const radioPickup = document.querySelector('input[value="pickup"]');
+            const alamatBox = document.getElementById('alamat-box');
+            const storeInfo = document.getElementById('store-info');
+            const labelDelivery = document.getElementById('label-delivery');
+            const labelPickup = document.getElementById('label-pickup');
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            const submitBtn = document.getElementById('submitBtn');
+            const loadingEl = document.getElementById('loading');
             
-            let q500 = parseInt(in500.value) || 0;
-            let q1kg = parseInt(in1kg.value) || 0;
-            let qBulk = parseInt(inBulk.value) || 0;
+            const in500 = document.getElementById('qty500');
+            const in1kg = document.getElementById('qty1kg');
+            const inBulk = document.getElementById('qtyBulk');
+            const errAlamat = document.getElementById('err-alamat');
+            const errNama = document.getElementById('err-nama');
+            const errHp = document.getElementById('err-hp');
+            const errBulk = document.getElementById('err-bulk');
 
-            if (q500===0 && q1kg===0 && qBulk===0) {
-                alert("Mohon isi minimal satu pesanan."); return;
-            }
-            if (qBulk > 0 && qBulk < 3) {
-                alert("Paket Ihya' Sunnah minimal 3kg."); return;
-            }
-
-            // Ambil Data
-            let nama = document.getElementById('nama').value;
-            let hp = document.getElementById('hp').value;
-            let hp2 = document.getElementById('hp2').value;
-            let metode = radioPickup.checked ? 'PICKUP (Ambil Sendiri)' : 'DELIVERY';
-            let alamat = document.getElementById('alamat').value;
-            let bayar = document.querySelector('input[name="bayar"]:checked').value;
-
-            // Kalkulasi Final untuk WA
-            let total = 0;
-            let listPesanan = [];
-            
-            if (q500 > 0) {
-                total += q500 * 25;
-                listPesanan.push(`• ${q500}x Paket 500gr`);
-            }
-            if (q1kg > 0) {
-                total += q1kg * 40;
-                listPesanan.push(`• ${q1kg}x Paket 1kg`);
-            }
-            if (qBulk >= 3) {
-                let hBulk = 120 + ((qBulk-3)*30);
-                total += hBulk;
-                listPesanan.push(`• Paket Ihya' Sunnah ${qBulk}kg`);
+            // Toggle Delivery/Pickup
+            function toggleMethod() {
+                const isPickup = radioPickup.checked;
+                alamatBox.style.display = isPickup ? 'none' : 'block';
+                storeInfo.style.display = isPickup ? 'block' : 'none';
+                
+                labelDelivery.classList.toggle('selected', !isPickup);
+                labelPickup.classList.toggle('selected', isPickup);
+                
+                // Hide error if pickup is selected
+                if (isPickup) {
+                    errAlamat.style.display = 'none';
+                }
+                
+                hitungTotal();
             }
 
-            let totalBerat = (q500*0.5) + q1kg + qBulk;
-            let ongkir = 0;
-            if (metode === 'DELIVERY' && totalBerat < 3) ongkir = 10;
-            
-            let grandTotal = total + ongkir;
+            // Hitung Total Real-time
+            function hitungTotal() {
+                let q500 = parseInt(in500.value) || 0;
+                let q1kg = parseInt(in1kg.value) || 0;
+                let qBulk = parseInt(inBulk.value) || 0;
 
-            // Format Pesan
-            let msg = `*ORDER RUTHOB PREMIUM* 🌿\n`;
-            msg += `--------------------------------\n`;
-            msg += `👤 Nama: ${nama}\n`;
-            msg += `📱 HP: ${hp}\n`;
-            if (hp2) msg += `📞 HP Cadangan: ${hp2}\n`;
-            msg += `🚚 Metode: ${metode}\n`;
-            
-            if (metode === 'DELIVERY') {
-                msg += `📍 Alamat: ${alamat}\n`;
-            } else {
-                msg += `📍 Ambil di: 277 Upper Coast St.\n`;
+                // Hitung Produk
+                let hargaProduk = (q500 * 25) + (q1kg * 40);
+                
+                // Logika Bulk
+                if (qBulk > 0) {
+                    if (qBulk < 3) {
+                        hargaProduk += qBulk * 40; // estimate
+                    } else {
+                        hargaProduk += 120 + ((qBulk - 3) * 30);
+                    }
+                }
+
+                // Hitung Ongkir
+                let ongkir = 0;
+                let totalBerat = (q500 * 0.5) + q1kg + qBulk;
+                
+                // Jika metode delivery dan berat kurang dari 3kg, ongkir $10
+                if (!radioPickup.checked && totalBerat > 0 && totalBerat < 3) {
+                    ongkir = 10;
+                }
+
+                // Update Tampilan
+                document.getElementById('txt-produk').innerText = "$" + hargaProduk.toFixed(2);
+                document.getElementById('txt-ongkir').innerText = ongkir === 0 ? "Percuma" : "$" + ongkir.toFixed(2);
+                document.getElementById('txt-total').innerText = "$" + (hargaProduk + ongkir).toFixed(2);
             }
-            
-            msg += `💳 Bayar: ${bayar}\n\n`;
-            msg += `*PESANAN ANDA:*\n${listPesanan.join('\n')}\n`;
-            msg += `--------------------------------\n`;
-            msg += `💰 Subtotal: $${total}\n`;
-            msg += `📦 Ongkir: $${ongkir}\n`;
-            msg += `*💵 TOTAL: $${grandTotal}*\n`;
-            msg += `--------------------------------\n`;
-            msg += `Mohon diproses. Jazakumullah khairan.`;
 
-            // Kirim ke 082325661244 (Format 62...)
-            let targetWA = "6282325661244";
-            window.open(`https://wa.me/${targetWA}?text=${encodeURIComponent(msg)}`, '_blank');
+            // Toggle Payment Methods
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                });
+            });
+
+            // Hide error messages on input
+            document.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('input', function() {
+                    const errorElement = this.parentElement.querySelector('.error-message');
+                    if (errorElement) {
+                        errorElement.style.display = 'none';
+                    }
+                });
+            });
+
+            // Kirim WhatsApp
+            document.getElementById('orderForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset errors
+                errNama.style.display = 'none';
+                errHp.style.display = 'none';
+                errAlamat.style.display = 'none';
+                errBulk.style.display = 'none';
+                
+                // Validasi sederhana
+                const nama = document.getElementById('nama').value.trim();
+                const hp = document.getElementById('hp').value.trim();
+                const alamat = document.getElementById('alamat').value.trim();
+                
+                let isValid = true;
+                
+                if (!nama) {
+                    errNama.style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!/^[0-9]{8,15}$/.test(hp)) {
+                    errHp.style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!radioPickup.checked && !alamat) {
+                    errAlamat.style.display = 'block';
+                    isValid = false;
+                }
+                
+                const qBulk = parseInt(inBulk.value) || 0;
+                if (qBulk > 0 && qBulk < 3) {
+                    errBulk.style.display = 'block';
+                    isValid = false;
+                }
+                
+                let q500 = parseInt(in500.value) || 0;
+                let q1kg = parseInt(in1kg.value) || 0;
+                
+                if (q500 === 0 && q1kg === 0 && qBulk === 0) {
+                    alert("Sila pilih sekurang-kurangnya satu pakej.");
+                    isValid = false;
+                }
+                
+                if (!isValid) return;
+                
+                // Show loading
+                submitBtn.disabled = true;
+                loadingEl.style.display = 'block';
+                
+                // Process after short delay for better UX
+                setTimeout(() => {
+                    processOrder();
+                    // Hide loading after redirect
+                    setTimeout(() => {
+                        loadingEl.style.display = 'none';
+                        submitBtn.disabled = false;
+                    }, 1000);
+                }, 800);
+            });
+
+            function processOrder() {
+                const q500 = parseInt(in500.value) || 0;
+                const q1kg = parseInt(in1kg.value) || 0;
+                const qBulk = parseInt(inBulk.value) || 0;
+                const nama = document.getElementById('nama').value.trim();
+                const hp = document.getElementById('hp').value.trim();
+                const hp2 = document.getElementById('hp2').value.trim();
+                const alamat = document.getElementById('alamat').value.trim();
+                const bayar = document.querySelector('input[name="bayar"]:checked').value;
+                const isPickup = radioPickup.checked;
+
+                // Kalkulasi Final
+                let total = 0;
+                let listPesanan = [];
+                
+                if (q500 > 0) {
+                    total += q500 * 25;
+                    listPesanan.push(`${q500}x Paket 500gr @ $25`);
+                }
+                if (q1kg > 0) {
+                    total += q1kg * 40;
+                    listPesanan.push(`${q1kg}x Paket 1kg @ $40`);
+                }
+                if (qBulk >= 3) {
+                    let hBulk = 120 + ((qBulk - 3) * 30);
+                    total += hBulk;
+                    listPesanan.push(`Paket Ihya' Sunnah ${qBulk}kg @ $${hBulk.toFixed(2)}`);
+                }
+
+                let totalBerat = (q500 * 0.5) + q1kg + qBulk;
+                let ongkir = 0;
+                if (!isPickup && totalBerat < 3 && totalBerat > 0) ongkir = 10;
+                let grandTotal = total + ongkir;
+
+                // Format Pesan
+                let msg = `*ORDER RUTHOB PREMIUM* 🌿\n`;
+                msg += `--------------------------------\n`;
+                msg += `👤 Nama: ${nama}\n`;
+                msg += `📱 WhatsApp: ${hp}\n`;
+                if (hp2) msg += `📞 HP Cadangan: ${hp2}\n`;
+                msg += `🚚 Metode: ${isPickup ? 'PICKUP (Ambil Sendiri)' : 'DELIVERY'}\n`;
+                
+                if (!isPickup) {
+                    msg += `📍 Alamat Penghantaran: ${alamat}\n`;
+                } else {
+                    msg += `📍 Ambil di: 277 Upper Coast St. S(466423)\n`;
+                }
+                
+                msg += `💳 Pembayaran: ${bayar}\n\n`;
+                msg += `*PESANAN ANDA:*\n${listPesanan.join('\n')}\n`;
+                msg += `--------------------------------\n`;
+                msg += `💰 Subtotal: $${total.toFixed(2)}\n`;
+                msg += `📦 Ongkos Kirim: ${ongkir === 0 ? 'Percuma' : '$' + ongkir.toFixed(2)}\n`;
+                msg += `*💵 TOTAL: $${grandTotal.toFixed(2)}*\n`;
+                msg += `--------------------------------\n`;
+                msg += `Terima kasih! Jazakumullah khairan.`;
+
+                // FIXED: No spaces in wa.me URL
+                const phoneNumber = "6282325661244";
+                const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
+                window.open(url, '_blank');
+            }
+
+            // Setup event listeners
+            radioDelivery.addEventListener('change', toggleMethod);
+            radioPickup.addEventListener('change', toggleMethod);
+            in500.addEventListener('input', hitungTotal);
+            in1kg.addEventListener('input', hitungTotal);
+            inBulk.addEventListener('input', hitungTotal);
+
+            // Initialize
+            toggleMethod();
+            hitungTotal();
         });
     </script>
 </body>
