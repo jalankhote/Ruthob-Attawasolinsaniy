@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     
     <style>
@@ -601,6 +600,119 @@
             font-weight: bold;
         }
 
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, var(--primary), #2a7045);
+            color: white;
+            margin-top: 40px;
+            padding: 35px 25px 20px;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Dikoreksi dari 3 ke 4 kolom */
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+        
+        /* Penambahan/Koreksi styles untuk elemen footer yang hilang dari CSS sebelumnya */
+        .footer-column {
+            /* flex-direction: column; */
+        }
+        
+        .footer-heading {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--secondary);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 13.5px;
+            line-height: 2;
+            transition: color 0.3s;
+            display: block;
+        }
+
+        .footer-links li a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-text {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .footer-link-gold {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .gmaps-button, .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        
+        .gmaps-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .gmaps-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+        
+        .social-link {
+            display: flex;
+            margin-top: 10px;
+            color: white;
+        }
+        
+        .social-link.instagram {
+            background: #d62976; /* Instagram color */
+        }
+        
+        .social-link.facebook {
+            background: #1877f2; /* Facebook color */
+        }
+        
+        .social-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
         /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
             .hero-slider-section {
@@ -613,6 +725,11 @@
             
             .slide-subtitle {
                 font-size: 1.0rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
             }
         }
 
@@ -687,16 +804,18 @@
                 font-size: 17px;
                 padding: 14px;
             }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- HERO SLIDER SECTION -->
         <div class="hero-slider-section">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    <!-- Slide 1: Promo Utama -->
                     <div class="swiper-slide" style="background-image: url('images/LADANG\ RUTHOB.jpg')">
                         <div class="slide-content">
                             <h1 class="slide-title">RUTHOB FRESH From SAUDI ARABIA</h1>
@@ -704,7 +823,6 @@
                         </div>
                     </div>
                     
-                    <!-- Slide 2: Ajwa Premium -->
                     <div class="swiper-slide" style="background-image: url('images/ajwa.png')">
                         <div class="slide-content">
                             <h1 class="slide-title">RUTHOB AJWA</h1>
@@ -712,7 +830,6 @@
                         </div>
                     </div>
                     
-                    <!-- Slide 3: Barhiy -->
                     <div class="swiper-slide" style="background-image: url('images/barhiy.png')">
                         <div class="slide-content">
                             <h1 class="slide-title">RUTHOB BARHIY</h1>
@@ -720,7 +837,6 @@
                         </div>
                     </div>
                     
-                    <!-- Slide 4: Sukariy -->
                     <div class="swiper-slide" style="background-image: url('images/sukariy.png')">
                         <div class="slide-content">
                             <h1 class="slide-title">RUTHOB SUKARIY</h1>
@@ -728,7 +844,6 @@
                         </div>
                     </div>
                     
-                    <!-- Slide 5: Nabta Sultan -->
                     <div class="swiper-slide" style="background-image: url('images/majdool.png')">
                         <div class="slide-content">
                             <h1 class="slide-title">RUTHOB MAJDOOL</h1>
@@ -736,7 +851,6 @@
                         </div>
                     </div>
                     
-                    <!-- Slide 6: Paket Barakah -->
                     <div class="swiper-slide" style="background-image: url('images/pakejbarakahkeluarga.png')">
                         <div class="slide-content">
                             <h1 class="slide-title">PAKEJ BARAKAH</h1>
@@ -744,7 +858,6 @@
                         </div>
                     </div>
                     
-                    <!-- Slide 7: Paket Ihya Sunnah -->
                     <div class="swiper-slide" style="background-image: url('images/pakejihyasunnah.png')">
                         <div class="slide-content">
                             <h1 class="slide-title">PAKEJ IHYA' SUNNAH</h1>
@@ -752,12 +865,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Pagination -->
                 <div class="swiper-pagination"></div>
             </div>
         </div>
 
-        <!-- HEADER -->
         <div class="header">
             <h1 class="title">PRE-ORDER RUTHOB</h1><br>
             <div class="cold-chain-badge">Ruthob Segar dibawa terus dari Saudi melalui Cold Chain Premium</div>
@@ -767,7 +878,6 @@
             </div>
         </div>
 
-        <!-- FORM -->
         <form id="orderForm" class="form-content">
             <div class="section-label">1. Metode Pengiriman</div>
             <div class="delivery-toggle">
@@ -886,179 +996,78 @@
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
                 HANTAR KE WHATSAPP
-            </button><!-- Footer Section - Paste setelah </form> -->
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-column">
-            <h3 class="footer-heading">INFO</h3>
-            <ul class="footer-links">
-                <li><a href="#profil">Profil Usaha</a></li>
-                <li><a href="#lowongan">Lowongan</a></li>
-                <li><a href="#cara-belanja">Cara Belanja</a></li>
-                <li><a href="#kontak">Kontak Kami</a></li>
-            </ul>
-            <ul class="footer-links" style="margin-top: 20px;">
-                <li><a href="#shop">Shop</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#privacy">Privacy Policy</a></li>
-                <li><a href="#sitemap">Sitemap</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h3 class="footer-heading">CUSTOMER SERVICE</h3>
-            <p class="footer-text">
-                Whatsapp: <a href="https://wa.me/6282325661244" target="_blank" class="footer-link-gold">+62 823-2566-1244</a><br>
-                Telp: <a href="tel:+6282325661244" class="footer-link-gold">+62 823-2566-1244</a>
-            </p>
-            <p class="footer-text" style="margin-top: 20px;">
-                Hari: Senin – Ahad (kecuali libur nasional)<br>
-                Pukul: 08.00 – 20.00 WIB
-            </p>
-        </div>
-
-        <div class="footer-column">
-            <h3 class="footer-heading">OFFLINE STORE</h3>
-            <p class="footer-text">
-                277 Upper Coast St,<br>
-                Singapore 466423
-            </p>
-            <a href="https://www.google.com/maps/search/?api=1&query=277+Upper+Coast+St+Singapore+466423" 
-               target="_blank" 
-               class="gmaps-button">
-                📍 Google Maps
-            </a>
-            <p class="footer-text" style="margin-top: 15px;">
-                🕒 Isnin - Jumaat: 9 pagi – 5 petang
-            </p>
-        </div>
-
-        <div class="footer-column">
-            <h3 class="footer-heading">FIND US</h3>
-            <a href="https://www.instagram.com/attawasolinsaniy?igsh=NGV3eWEzaWIxOWJs" target="_blank" class="social-link instagram">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.508-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 00-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"/>
-                </svg>
-                Instagram
-            </a>
-            <a href="https://www.facebook.com/share/1BFRGsUUsr/" target="_blank" class="social-link facebook">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                Facebook
-            </a>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <p>RUTHOB PREMIUM | Pre-Order Ruthob Fresh dari Saudi Arabia</p>
-    </div>
-</footer>
-    </div>
-</footer>
-    </div>
-</footer>
-
-<!-- CSS untuk Footer - Taruh di dalam tag <style> yang sudah ada -->
-<style>
-/* Footer Styles */
-.footer {
-    background: linear-gradient(135deg, var(--primary), #2a7045);
-    color: white;
-    margin-top: 40px;
-    padding: 35px 25px 20px;
-    border-radius: 0 0 16px 16px;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 800px;
-    margin: 0 auto 25px;
-}
-
-.footer-section {
-    text-align: center;
-}
-
-.footer-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--secondary);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-.address-link {
-    display: block;
-    text-decoration: none;
-    color: white;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 12px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.address-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    border-color: var(--secondary);
-}
-
-.address-text {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.5;
-    margin-bottom: 6px;
-}
-
-.click-hint {
-    font-size: 11px;
-    opacity: 0.8;
-    font-weight: 500;
-}
-
-.whatsapp-link {
-    display: inline-block;
-    text-decoration: none;
-    color: white;
-    background: var(--success);
-    padding: 10px 18px;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.whatsapp-link:hover {
-    background: #1fbf5a;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 13px;
-    opacity: 0.9;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-}
-</style>
+            </button>
         </form>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-heading">INFO</h3>
+                    <ul class="footer-links">
+                        <li><a href="#profil">Profil Usaha</a></li>
+                        <li><a href="#lowongan">Lowongan</a></li>
+                        <li><a href="#cara-belanja">Cara Belanja</a></li>
+                        <li><a href="#kontak">Kontak Kami</a></li>
+                    </ul>
+                    <ul class="footer-links" style="margin-top: 20px;">
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#sitemap">Sitemap</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-heading">CUSTOMER SERVICE</h3>
+                    <p class="footer-text">
+                        Whatsapp: <a href="https://wa.me/6282325661244" target="_blank" class="footer-link-gold">+62 823-2566-1244</a><br>
+                        Telp: <a href="tel:+6282325661244" class="footer-link-gold">+62 823-2566-1244</a>
+                    </p>
+                    <p class="footer-text" style="margin-top: 20px;">
+                        Hari: Senin – Ahad (kecuali libur nasional)<br>
+                        Pukul: 08.00 – 20.00 WIB
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-heading">OFFLINE STORE</h3>
+                    <p class="footer-text">
+                        277 Upper Coast St,<br>
+                        Singapore 466423
+                    </p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=277+Upper+Coast+St+Singapore+466423" 
+                        target="_blank" 
+                        class="gmaps-button">
+                        📍 Google Maps
+                    </a>
+                    <p class="footer-text" style="margin-top: 15px;">
+                        🕒 Isnin - Jumaat: 9 pagi – 5 petang
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-heading">FIND US</h3>
+                    <a href="https://www.instagram.com/attawasolinsaniy?igsh=NGV3eWEzaWIxOWJs" target="_blank" class="social-link instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.508-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 00-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"/>
+                        </svg>
+                        Instagram
+                    </a>
+                    <a href="https://www.facebook.com/share/1BFRGsUUsr/" target="_blank" class="social-link facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        Facebook
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>RUTHOB PREMIUM | Pre-Order Ruthob Fresh dari Saudi Arabia</p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script>
@@ -1128,7 +1137,7 @@
                 // Logika Bulk
                 if (qBulk > 0) {
                     if (qBulk < 3) {
-                        hargaProduk += qBulk * 40; // estimate
+                        hargaProduk += qBulk * 40; // estimate (Jika kurang dari 3kg, dihitung harga eceran, 40/kg)
                     } else {
                         hargaProduk += 120 + ((qBulk - 3) * 30);
                     }
@@ -1200,6 +1209,7 @@
                 }
                 
                 const qBulk = parseInt(inBulk.value) || 0;
+                // Validasi: Jika Qty Bulk > 0, harus >= 3
                 if (qBulk > 0 && qBulk < 3) {
                     errBulk.style.display = 'block';
                     isValid = false;
@@ -1253,10 +1263,17 @@
                     total += q1kg * 40;
                     listPesanan.push(`${q1kg}x Paket 1kg @ $40`);
                 }
+                
+                // Logika Bulk yang sama dengan hitungTotal
                 if (qBulk >= 3) {
                     let hBulk = 120 + ((qBulk - 3) * 30);
                     total += hBulk;
                     listPesanan.push(`Paket Ihya' Sunnah ${qBulk}kg @ $${hBulk.toFixed(2)}`);
+                } else if (qBulk > 0 && qBulk < 3) {
+                    // Jika validasi gagal, ini seharusnya tidak terjadi.
+                    // Jika terjadi, hitung sebagai eceran per kg
+                    total += qBulk * 40; 
+                    listPesanan.push(`Paket Ihya' Sunnah ${qBulk}kg (Dihitung Eceran) @ $${(qBulk * 40).toFixed(2)}`);
                 }
 
                 let totalBerat = (q500 * 0.5) + q1kg + qBulk;
