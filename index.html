@@ -384,6 +384,36 @@
             border-radius: 6px;
         }
 
+        /* Styling untuk Varian */
+        .varian-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            background: #f7f7f7;
+            border: 1px solid #eee;
+        }
+
+        .varian-row label {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 0;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .varian-row input.varian-input {
+            width: 65px;
+            text-align: center;
+            font-weight: 600;
+            padding: 6px;
+            font-size: 13px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
         /* PAYMENT SECTION */
         .payment-section {
             background: rgba(248, 250, 248, 0.7);
@@ -929,14 +959,32 @@
             
             <div class="package-card">
                 <div class="pkg-name">📦 Paket Barakah Keluarga</div>
-                <div class="pkg-price-tag">Eceran Hemat</div>
+                <div class="pkg-price-tag">Eceran Hemat (Minimal 250gr per jenis kurma)</div>
+                
                 <div class="qty-row">
-                    <label>500 Gram ($25)</label>
+                    <label>Jumlah Paket 500 Gram ($25)</label>
                     <input type="number" id="qty500" min="0" value="0">
                 </div>
-                <div class="qty-row">
-                    <label>1 Kg ($40)</label>
+                <div id="detail500" class="package-details" style="display:none; margin-top:15px; border-top: 1px solid #eee; padding-top: 15px;">
+                    <p style="font-size:13px; font-weight:600; color:var(--primary); margin-bottom:10px;">Detail Varian Paket 500gr (Total Alokasi: <span class="total-target-500">0.00</span> Kg):</p>
+                    <div class="varian-container" id="varian-500">
+                        </div>
+                    <div class="error-message" id="err-varian500" style="display:none; color:#e67e22;">
+                        Total alokasi varian harus tepat 500g untuk setiap paket.
+                    </div>
+                </div>
+
+                <div class="qty-row" style="margin-top: 20px;">
+                    <label>Jumlah Paket 1 Kg ($40)</label>
                     <input type="number" id="qty1kg" min="0" value="0">
+                </div>
+                <div id="detail1kg" class="package-details" style="display:none; margin-top:15px; border-top: 1px solid #eee; padding-top: 15px;">
+                    <p style="font-size:13px; font-weight:600; color:var(--primary); margin-bottom:10px;">Detail Varian Paket 1 Kg (Total Alokasi: <span class="total-target-1kg">0.00</span> Kg):</p>
+                    <div class="varian-container" id="varian-1kg">
+                         </div>
+                    <div class="error-message" id="err-varian1kg" style="display:none; color:#e67e22;">
+                        Total alokasi varian harus tepat 1kg untuk setiap paket.
+                    </div>
                 </div>
             </div>
 
@@ -944,13 +992,22 @@
                 <div class="pkg-name">🌟 Paket Ihya' Sunnah</div>
                 <div class="pkg-price-tag">$120 (3kg Pertama)</div>
                 <p style="font-size:13px; margin:10px 0 15px; color:#555; line-height:1.4;">
-                    <strong>📝 Note:</strong> Selanjutnya hanya $30/kg. Minimum order 3kg.
+                    <strong>📝 Note:</strong> Selanjutnya hanya $30/kg. Minimum order 3kg. Alokasi varian per 1 kg.
                 </p>
                 <div class="qty-row">
                     <label>Jumlah Kg (Min 3kg)</label>
                     <input type="number" id="qtyBulk" min="0" value="0">
                 </div>
                 <div class="error-message" id="err-bulk">Minimum order 3kg untuk paket ini</div>
+                
+                <div id="detailBulk" class="package-details" style="display:none; margin-top:15px; border-top: 1px solid #eee; padding-top: 15px;">
+                    <p style="font-size:13px; font-weight:600; color:var(--primary); margin-bottom:10px;">Detail Varian Paket Bulk (Total Alokasi: <span id="totalBulkKG">0</span> Kg):</p>
+                    <div class="varian-container" id="varian-bulk">
+                         </div>
+                    <div class="error-message" id="err-varianBulk" style="display:none; color:#e67e22;">
+                        Total alokasi varian harus sama dengan total Kg yang dipesan.
+                    </div>
+                </div>
             </div>
 
             <div class="section-label">4. Pembayaran</div>
@@ -1087,6 +1144,9 @@
                 }
             });
 
+            // Varian Kurma yang tersedia
+            const VARIAN_KURMA = ['Ajwa', 'Barhiy', 'Sukariy', 'Majdool'];
+
             // DOM Elements
             const radioDelivery = document.querySelector('input[value="delivery"]');
             const radioPickup = document.querySelector('input[value="pickup"]');
@@ -1098,15 +1158,161 @@
             const submitBtn = document.getElementById('submitBtn');
             const loadingEl = document.getElementById('loading');
             
+            // Input Paket
             const in500 = document.getElementById('qty500');
             const in1kg = document.getElementById('qty1kg');
             const inBulk = document.getElementById('qtyBulk');
+            const detail500 = document.getElementById('detail500');
+            const detail1kg = document.getElementById('detail1kg');
+            const detailBulk = document.getElementById('detailBulk');
+            const totalBulkKGEl = document.getElementById('totalBulkKG');
+            
+            // Error Messages
             const errAlamat = document.getElementById('err-alamat');
             const errNama = document.getElementById('err-nama');
             const errHp = document.getElementById('err-hp');
             const errBulk = document.getElementById('err-bulk');
+            const errVarian500 = document.getElementById('err-varian500');
+            const errVarian1kg = document.getElementById('err-varian1kg');
+            const errVarianBulk = document.getElementById('err-varianBulk');
+            
+            // --- FUNGSI GENERATE VARIAN ---
 
-            // Toggle Delivery/Pickup
+            function generateVarianInputs(containerId, unitWeight, totalPackages, totalWeightPerPackage) {
+                const container = document.getElementById(containerId);
+                const currentInputs = container.querySelectorAll('.varian-input');
+
+                // Jika container kosong, buat input baru
+                if (currentInputs.length === 0 || container.dataset.packages !== String(totalPackages)) {
+                    container.innerHTML = '';
+                    if (totalPackages === 0) return;
+                    
+                    container.dataset.packages = totalPackages;
+                    const totalTargetWeight = totalPackages * totalWeightPerPackage;
+                    
+                    const labelText = unitWeight === 0.25 ? " (kg)" : " (kg)";
+                    
+                    VARIAN_KURMA.forEach(varian => {
+                        const row = document.createElement('div');
+                        row.className = 'varian-row';
+                        
+                        const label = document.createElement('label');
+                        label.innerText = `${varian} ${labelText}:`;
+                        
+                        const input = document.createElement('input');
+                        input.type = 'number';
+                        input.className = 'varian-input';
+                        input.name = `varian_${containerId}_${varian.toLowerCase()}`;
+                        input.min = '0';
+                        
+                        // Set step: 0.25 untuk 500g/1kg, 1 untuk bulk
+                        input.step = unitWeight; 
+                        
+                        // Set nilai awal rata (jika ada pesanan)
+                        if (containerId === 'varian-bulk' && totalTargetWeight > 0) {
+                            input.value = (totalTargetWeight / VARIAN_KURMA.length).toFixed(0);
+                        } else {
+                            input.value = '0.00';
+                        }
+                        
+                        // Tambahkan event listener untuk kalkulasi total saat varian diubah
+                        input.addEventListener('input', hitungTotal);
+                        
+                        row.appendChild(label);
+                        row.appendChild(input);
+                        container.appendChild(row);
+                    });
+                }
+                hitungTotal();
+            }
+
+            // --- FUNGSI UTAMA HITUNG TOTAL ---
+
+            function hitungTotal() {
+                let q500 = parseInt(in500.value) || 0;
+                let q1kg = parseInt(in1kg.value) || 0;
+                let qBulk = parseInt(inBulk.value) || 0;
+                
+                // Atur total target untuk display
+                document.querySelector('.total-target-500').innerText = (q500 * 0.5).toFixed(2);
+                document.querySelector('.total-target-1kg').innerText = (q1kg * 1.0).toFixed(2);
+                totalBulkKGEl.innerText = qBulk;
+
+
+                // Tampilkan/Sembunyikan detail varian dan re-generate jika perlu
+                detail500.style.display = q500 > 0 ? 'block' : 'none';
+                if (q500 > 0) generateVarianInputs('varian-500', 0.25, q500, 0.5);
+                
+                detail1kg.style.display = q1kg > 0 ? 'block' : 'none';
+                if (q1kg > 0) generateVarianInputs('varian-1kg', 0.25, q1kg, 1.0);
+                
+                detailBulk.style.display = qBulk > 0 ? 'block' : 'none';
+                if (qBulk > 0) generateVarianInputs('varian-bulk', 1, qBulk, 1.0);
+
+
+                let hargaProduk = (q500 * 25) + (q1kg * 40);
+                
+                if (qBulk > 0) {
+                    if (qBulk < 3) {
+                        hargaProduk += qBulk * 40; 
+                    } else {
+                        hargaProduk += 120 + ((qBulk - 3) * 30);
+                    }
+                }
+
+                let totalBerat = (q500 * 0.5) + q1kg + qBulk;
+                let ongkir = 0;
+                
+                // Hitung Ongkir: $10 jika total berat > 0 dan < 3kg, dan bukan pickup
+                if (!radioPickup.checked && totalBerat > 0 && totalBerat < 3) {
+                    ongkir = 10;
+                }
+
+                // Update Ringkasan Total
+                document.getElementById('txt-produk').innerText = "$" + hargaProduk.toFixed(2);
+                document.getElementById('txt-ongkir').innerText = ongkir === 0 ? "Percuma" : "$" + ongkir.toFixed(2);
+                document.getElementById('txt-total').innerText = "$" + (hargaProduk + ongkir).toFixed(2);
+            }
+
+            // --- FUNGSI VALIDASI VARIAN ---
+            function validateVarian(q500, q1kg, qBulk) {
+                let isValid = true;
+                
+                const checkVarianAllocation = (containerId, totalPackages, weightPerPackage, errElement) => {
+                    if (totalPackages > 0) {
+                        const totalTarget = totalPackages * weightPerPackage;
+                        let totalVarian = 0;
+                        document.querySelectorAll(`#${containerId} .varian-input`).forEach(input => {
+                            totalVarian += (parseFloat(input.value) || 0);
+                        });
+                        
+                        // Cek dengan toleransi kecil (toFixed(2)) untuk mengatasi floating point issue
+                        if (totalVarian.toFixed(2) != totalTarget.toFixed(2)) {
+                            errElement.style.display = 'block';
+                            return false;
+                        } else {
+                            errElement.style.display = 'none';
+                        }
+                    } else {
+                         errElement.style.display = 'none';
+                    }
+                    return true;
+                };
+
+                // 1. Validasi 500g (0.5 kg)
+                if (!checkVarianAllocation('varian-500', q500, 0.5, errVarian500)) isValid = false;
+
+                // 2. Validasi 1kg (1.0 kg)
+                if (!checkVarianAllocation('varian-1kg', q1kg, 1.0, errVarian1kg)) isValid = false;
+
+                // 3. Validasi Bulk (1.0 kg per qtyBulk)
+                if (!checkVarianAllocation('varian-bulk', qBulk, 1.0, errVarianBulk)) isValid = false;
+                
+                return isValid;
+            }
+
+
+            // Toggle Delivery/Pickup 
             function toggleMethod() {
                 const isPickup = radioPickup.checked;
                 alamatBox.style.display = isPickup ? 'none' : 'block';
@@ -1122,35 +1328,7 @@
                 hitungTotal();
             }
 
-            // Hitung Total Real-time
-            function hitungTotal() {
-                let q500 = parseInt(in500.value) || 0;
-                let q1kg = parseInt(in1kg.value) || 0;
-                let qBulk = parseInt(inBulk.value) || 0;
-
-                let hargaProduk = (q500 * 25) + (q1kg * 40);
-                
-                if (qBulk > 0) {
-                    if (qBulk < 3) {
-                        hargaProduk += qBulk * 40;
-                    } else {
-                        hargaProduk += 120 + ((qBulk - 3) * 30);
-                    }
-                }
-
-                let ongkir = 0;
-                let totalBerat = (q500 * 0.5) + q1kg + qBulk;
-                
-                if (!radioPickup.checked && totalBerat > 0 && totalBerat < 3) {
-                    ongkir = 10;
-                }
-
-                document.getElementById('txt-produk').innerText = "$" + hargaProduk.toFixed(2);
-                document.getElementById('txt-ongkir').innerText = ongkir === 0 ? "Percuma" : "$" + ongkir.toFixed(2);
-                document.getElementById('txt-total').innerText = "$" + (hargaProduk + ongkir).toFixed(2);
-            }
-
-            // Toggle Payment Methods
+            // Toggle Payment Methods (SAMA)
             paymentOptions.forEach(option => {
                 option.addEventListener('click', () => {
                     paymentOptions.forEach(opt => opt.classList.remove('selected'));
@@ -1158,8 +1336,8 @@
                 });
             });
 
-            // Hide error messages on input
-            document.querySelectorAll('input, textarea').forEach(input => {
+            // Hide error messages on input (kecuali input varian, karena mereka divalidasi saat submit)
+            document.querySelectorAll('input:not(.varian-input), textarea').forEach(input => {
                 input.addEventListener('input', function() {
                     const errorElement = this.parentElement.querySelector('.error-message');
                     if (errorElement) {
@@ -1172,6 +1350,7 @@
             document.getElementById('orderForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
+                // Reset error messages
                 errNama.style.display = 'none';
                 errHp.style.display = 'none';
                 errAlamat.style.display = 'none';
@@ -1180,6 +1359,9 @@
                 const nama = document.getElementById('nama').value.trim();
                 const hp = document.getElementById('hp').value.trim();
                 const alamat = document.getElementById('alamat').value.trim();
+                const q500 = parseInt(in500.value) || 0;
+                const q1kg = parseInt(in1kg.value) || 0;
+                const qBulk = parseInt(inBulk.value) || 0;
                 
                 let isValid = true;
                 
@@ -1198,18 +1380,22 @@
                     isValid = false;
                 }
                 
-                const qBulk = parseInt(inBulk.value) || 0;
                 if (qBulk > 0 && qBulk < 3) {
                     errBulk.style.display = 'block';
                     isValid = false;
                 }
                 
-                let q500 = parseInt(in500.value) || 0;
-                let q1kg = parseInt(in1kg.value) || 0;
-                
                 if (q500 === 0 && q1kg === 0 && qBulk === 0) {
                     alert("Sila pilih sekurang-kurangnya satu pakej.");
                     isValid = false;
+                }
+                
+                // Validasi Alokasi Varian
+                if (isValid && (q500 > 0 || q1kg > 0 || qBulk > 0)) {
+                    if (!validateVarian(q500, q1kg, qBulk)) {
+                        alert("Sila periksa kembali alokasi varian kurma Anda. Total harus sesuai dengan berat paket yang dipesan.");
+                        isValid = false;
+                    }
                 }
                 
                 if (!isValid) return;
@@ -1226,6 +1412,7 @@
                 }, 800);
             });
 
+            // --- FUNGSI PROSES ORDER (WHATSAPP MESSAGE) ---
             function processOrder() {
                 const q500 = parseInt(in500.value) || 0;
                 const q1kg = parseInt(in1kg.value) || 0;
@@ -1240,22 +1427,48 @@
                 let total = 0;
                 let listPesanan = [];
                 
+                // Fungsi Pembantu untuk mendapatkan detail varian
+                const getVarianDetails = (containerId) => {
+                    let details = [];
+                    document.querySelectorAll(`#${containerId} .varian-input`).forEach(input => {
+                        const value = parseFloat(input.value) || 0;
+                        if (value > 0) {
+                            const name = input.name.split('_')[2].toUpperCase();
+                            details.push(`${value.toFixed(2)} kg ${name}`);
+                        }
+                    });
+                    return details.join(' + ');
+                };
+
                 if (q500 > 0) {
                     total += q500 * 25;
-                    listPesanan.push(`${q500}x Paket 500gr @ $25`);
+                    const details = getVarianDetails('varian-500');
+                    listPesanan.push(`${q500}x Paket 500gr ($25/pcs) | Total Berat: ${(q500 * 0.5).toFixed(2)} kg`);
+                    listPesanan.push(`  └ Varian: ${details}`);
                 }
                 if (q1kg > 0) {
                     total += q1kg * 40;
-                    listPesanan.push(`${q1kg}x Paket 1kg @ $40`);
+                    const details = getVarianDetails('varian-1kg');
+                    listPesanan.push(`${q1kg}x Paket 1kg ($40/pcs) | Total Berat: ${(q1kg * 1.0).toFixed(2)} kg`);
+                    listPesanan.push(`  └ Varian: ${details}`);
                 }
                 
-                if (qBulk >= 3) {
-                    let hBulk = 120 + ((qBulk - 3) * 30);
-                    total += hBulk;
-                    listPesanan.push(`Paket Ihya' Sunnah ${qBulk}kg @ ${hBulk.toFixed(2)}`);
-                } else if (qBulk > 0 && qBulk < 3) {
-                    total += qBulk * 40; 
-                    listPesanan.push(`Paket Ihya' Sunnah ${qBulk}kg (Dihitung Eceran) @ ${(qBulk * 40).toFixed(2)}`);
+                if (qBulk > 0) {
+                    let hBulk;
+                    let hargaTotalBulk;
+                    
+                    if (qBulk >= 3) {
+                        hBulk = 120 + ((qBulk - 3) * 30);
+                        hargaTotalBulk = hBulk;
+                        listPesanan.push(`Paket Ihya' Sunnah ${qBulk}kg | Harga Total: $${hargaTotalBulk.toFixed(2)}`);
+                    } else {
+                        hargaTotalBulk = qBulk * 40; 
+                        listPesanan.push(`Paket Ihya' Sunnah ${qBulk}kg (Dihitung Eceran) | Harga Total: $${hargaTotalBulk.toFixed(2)}`);
+                    }
+                    total += hargaTotalBulk;
+                    
+                    const details = getVarianDetails('varian-bulk');
+                    listPesanan.push(`  └ Varian: ${details}`);
                 }
 
                 let totalBerat = (q500 * 0.5) + q1kg + qBulk;
@@ -1279,7 +1492,7 @@
                 msg += `💳 Pembayaran: ${bayar}\n\n`;
                 msg += `*PESANAN ANDA:*\n${listPesanan.join('\n')}\n`;
                 msg += `--------------------------------\n`;
-                msg += `💰 Subtotal: ${total.toFixed(2)}\n`;
+                msg += `💰 Subtotal: $${total.toFixed(2)}\n`;
                 msg += `📦 Ongkos Kirim: ${ongkir === 0 ? 'Percuma' : ' + $' + ongkir.toFixed(2)}\n`;
                 msg += `*💵 TOTAL: $${grandTotal.toFixed(2)}*\n`;
                 msg += `--------------------------------\n`;
@@ -1295,7 +1508,7 @@
             in500.addEventListener('input', hitungTotal);
             in1kg.addEventListener('input', hitungTotal);
             inBulk.addEventListener('input', hitungTotal);
-
+            
             toggleMethod();
             hitungTotal();
         });
